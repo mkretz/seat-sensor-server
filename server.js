@@ -13,7 +13,7 @@ module.exports.StartServer = function () {
     // create client for communicating with app server
     var client = restify.createJsonClient({
         version: '*',
-        url: 'http://hack.ronky.net'
+        url: (process.env.APP_SERVER_URL ? process.env.APP_SERVER_URL : 'http://hack.ronky.net')
     });
 
     function addLink(data, rel, routeName, reqParams) {
@@ -36,7 +36,8 @@ module.exports.StartServer = function () {
         console.log('Hex value: ' + sensorReadingHex);
         var sensorReading = parseInt(sensorReadingHex, 16);
         console.log('Decimal value: ' + sensorReading);
-        var isFree = (sensorReading ? sensorReading < 900000 : true);
+        var luminosityThreshold = (process.env.LUMINOSITY_THRESHOLD ? process.env.LUMINOSITY_THRESHOLD : 950000);
+        var isFree = (sensorReading ? sensorReading < luminosityThreshold : true);
         var data = {id : sensorid, free : isFree};
         var path = '/sensor/' + sensorid;
         console.log('sensor update to ' + client.url.href + path + ' with payload ' + JSON.stringify(data));

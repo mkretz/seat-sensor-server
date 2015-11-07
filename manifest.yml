@@ -2,3 +2,6 @@
 applications:
 - name: seat-sensor-server
   command: node index.js
+  env:
+    APP_SERVER_URL: http://hack.ronky.net
+    LUMINOSITY_THRESHOLD: 950000
