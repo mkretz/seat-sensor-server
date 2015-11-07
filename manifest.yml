@@ -1,6 +1,6 @@
 ---
 applications:
-- name: seat-sensor-server
+- name: seat-sensor-server-b
   command: node index.js
   env:
     APP_SERVER_URL: http://hack.ronky.net
