@@ -1,0 +1,4 @@
+---
+applications:
+- name: seat-sensor-server
+  command: node index.js
